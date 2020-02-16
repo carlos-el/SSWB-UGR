@@ -1,0 +1,6 @@
+.*
+*.md
+venv
+Dockerfile
+docker-compose.yml
+LICENSE
