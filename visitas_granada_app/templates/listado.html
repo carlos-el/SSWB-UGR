@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if visitas %}
+        <h2>Listado de visitas disponibles en Granada</h2>
+        <ul>
+        {% for visita in visitas %}
+            <div class="visita">
+                <a href="/visita/{{ visita.id }}/"> 
+                    <li><h3>{{ visita.nombre }}</h3> </li>
+                    <img src="{{ visita.foto.url }}" width="100" height="100">
+                </a>
+                <p>{{visita.descripcion}}</p>
+                {% if visita.comentarios %}
+                    <span><b>Comentarios:</b></span>
+                    <ul>
+                        {% for comentario in visita.comentarios.all %}
+                            <li>
+                                {{comentario.texto}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <br>
+                {% endif %}
+                <span>Esta visita ha gustado a {{visita.likes}} personas.</span>
+            </div>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay visitas registradas en el sistema.</p>
+    {% endif %}
+
+{% endblock %}
