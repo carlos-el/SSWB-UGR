@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col mx-4 mt-3 mt-sm-5">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <i class="feather-16" data-feather="alert-circle"></i> {{ message }}.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="feather-16" data-feather="check-circle"></i> {{ message }}.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <i class="feather-16" data-feather="alert-triangle"></i> {{ message }}.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="feather-16" data-feather="x-octagon"></i> {{ message }}.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col pt-1 pb-4 pt-sm-3">
+                <form id="nuevaVisitaForm" class="mx-4" action="{% url 'nueva' %}" method="post"
+                    enctype="multipart/form-data">
+                    <h1 class="h3 mb-3 font-weight-normal">Introduzca la información de la nueva visita.</h1>
+    
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                    {% endfor %}
+    
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-lg btn-primary btn-block mt-4" style="max-width: 400px;" type="submit"><i
+                            class="feather-16" data-feather="save"></i> Añadir visita</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

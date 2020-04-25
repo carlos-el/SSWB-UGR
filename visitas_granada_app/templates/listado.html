@@ -3,33 +3,123 @@
 
 {% block content %}
 
-    {% if visitas %}
-        <h2>Listado de visitas disponibles en Granada</h2>
-        <ul>
-        {% for visita in visitas %}
-            <div class="visita">
-                <a href="/visita/{{ visita.id }}/"> 
-                    <li><h3>{{ visita.nombre }}</h3> </li>
-                    <img src="{{ visita.foto.url }}" width="100" height="100">
-                </a>
-                <p>{{visita.descripcion}}</p>
-                {% if visita.comentarios %}
-                    <span><b>Comentarios:</b></span>
-                    <ul>
-                        {% for comentario in visita.comentarios.all %}
-                            <li>
-                                {{comentario.texto}}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    <br>
-                {% endif %}
-                <span>Esta visita ha gustado a {{visita.likes}} personas.</span>
+<!-- Carrusel con título -->
+<div class="container-fluid m-0 p-0">
+    <div class="row m-0 p-0">
+        <div class="col px-0">
+            <div id="carouselListaVisitas" class="carousel slide position-relative" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-interval="5000">
+                        <img src="/media/fotos/granada.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item" data-interval="5000">
+                        <img src="/media/fotos/granada2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
             </div>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay visitas registradas en el sistema.</p>
-    {% endif %}
+
+
+            <div class="titleListaVisitas container-fluid pl-0">
+                <h3 class="title text-center">Visitas en Granada</h3>
+                <p class="titleCaption text-center">¡Hay mucho por descubrir!</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Pagina principal -->
+<div class="container-fluid px-3 pt-2 px-xl-5 pt-md-4">
+    <div class="row">
+        <div class="col-md-4 col-xl-3 mb-3">
+            columna de filtros
+        </div>
+        <div class="cardsCol col-md-8 col-xl-9 mb-4">
+            {% if messages %}
+                <div class="row">
+                    <div class="col">
+                        {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    <i class="feather-16" data-feather="alert-circle"></i> {{ message }}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="feather-16" data-feather="check-circle"></i> {{ message }}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <i class="feather-16" data-feather="alert-triangle"></i> {{ message }}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="feather-16" data-feather="x-octagon"></i> {{ message }}.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if visitas %}
+            <div class="row">
+                {% for visita in visitas %}
+                <div class="col-12 col-xl-6">
+                    <!-- Card de cada visita -->
+                    <a href="{% url 'detalle' visita.id %}">
+                        <div class="card p-3 mt-3 border-0 shadow" style="max-width: 760px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 align-self-center">
+                                    <img src="{{ visita.foto.url }}" class="card-img"
+                                        style="max-width: 180px; max-height: 180px; height: auto;" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body py-0 px-0 pt-3 pt-md-0 pl-md-3">
+                                        <h5 class="card-title text-primary" style="font-weight: bold;">{{ visita.nombre }}</h5>
+                                        <p class="card-text">
+                                            {% if visita.descripcion|length > 100 %}
+                                                {{ visita.descripcion|slice:"0:97" }}...
+                                            {% else %}
+                                                {{ visita.descripcion }}
+                                            {% endif %}
+                                        </p>
+                                        <p class="card-text"><small class="text-muted">Esta visita ha gustado a
+                                                {{ visita.likes }} personas.</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% if request.user.is_staff %}
+                        <a href="{% url 'detalle' visita.id %}#editVisitaForm" class="btn btn-primary text-light mb-3 mr-2">Editar</a>
+                        <button class="delVisitaButton btn btn-danger text-light mb-3" data-id="{{ visita.id }}">Eliminar</button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-danger">No hay visitas registradas en el sistema.</p>
+            {% endif %}
+
+
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}
