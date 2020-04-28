@@ -1,0 +1,52 @@
+:root {
+    --primary-color: #252525;
+    --secondary-color: #3d3d3d;
+	--ligth-color: #7e7e7e;
+    --dark-color: #0c0c0c;
+	--font-light-color: #e0e0e0;
+}
+
+[data-theme="dark"] body{
+    background-color: #333333;
+    color: var(--font-light-color) !important;
+}
+
+[data-theme="dark"] .bg-primary{
+    background-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .bg-dark{
+    background-color: var(--dark-color) !important;
+}
+
+[data-theme="dark"] .nav-link{
+    color: var(--font-light-color) !important;
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--secondary-color) !important;
+}
+
+[data-theme="dark"] .card-title {
+    color: var(--font-light-color) !important;
+}
+
+[data-theme="dark"] .card-text {
+    background-color: var(--secondary-color) !important;
+    color: var(--font-light-color) !important;
+}
+
+[data-theme="dark"] input, textarea{
+    background-color: var(--ligth-color) !important;
+    color: var(--font-light-color) !important;
+}
+
+[data-theme="dark"] #id_foto{
+    background-color: #333333 !important;
+}
+
+[data-theme="dark"] ::placeholder{
+    color: var(--dark-color) !important;
+}
+
+

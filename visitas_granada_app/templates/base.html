@@ -1,112 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta name="description" content="Visitas Granada">
-    <meta name="author" content="Carlos Enriquez Lopez">
+  <meta name="description" content="Visitas Granada">
+  <meta name="author" content="Carlos Enriquez Lopez">
 
-    {% load static %}
+  {% load static %}
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'visitas_granada_app/style.css' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'visitas_granada_app/favicon.png' %}" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'visitas_granada_app/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'visitas_granada_app/dark-mode.css' %}">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
-    <!-- Paquete de iconox Feather -->
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    
-    <script src="{% static 'visitas_granada_app/javascript.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 
-    <title>Visitas Granada</title>
+  <!-- Paquete de iconos Feather -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <script src="{% static 'visitas_granada_app/javascript.js' %}"></script>
+
+  <title>Visitas Granada</title>
 
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand" href="{% url 'listado' %}">
-                <img src="/media/fotos/default.png" width="30" height="30" alt="">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <a class="navbar-brand" href="{% url 'listado' %}">
+        <img src="/media/fotos/default.png" width="30" height="30" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'listado' %}">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Dropdown
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'listado' %}">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                {% if request.user.is_staff %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'nueva' %}"><i class="feather-16" data-feather="plus-square"></i> Nueva visita</a>
-                </li>
-                {% endif %}
-              </ul>
-              <ul class="navbar-nav ml-md-auto">
-                {% if request.user.is_authenticated %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}"><i class="feather-16" data-feather="log-out"></i> Logout</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="feather-16" data-feather="user-check"></i> {{ request.user.username }}</a>
-                  </li>
-                {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}"><i class="feather-16" data-feather="log-in"></i> Login</a>
-                  </li>
-                  <!-- <li class="nav-item">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          {% if request.user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'nueva' %}"><i class="feather-16" data-feather="plus-square"></i> Nueva
+              visita</a>
+          </li>
+          {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-md-auto">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'logout' %}"><i class="feather-16" data-feather="log-out"></i> Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#"><i class="feather-16" data-feather="user-check"></i>
+              {{ request.user.username }}</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'login' %}"><i class="feather-16" data-feather="log-in"></i> Login</a>
+          </li>
+          <!-- <li class="nav-item">
                     <a class="nav-link active" href="#"><i class="feather-16" data-feather="user-plus"></i> Register</a>
                   </li> -->
-                {% endif %}
+          {% endif %}
 
-                <li class="nav-item dropdown mr-4 ml-4">
-                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Language
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-                      <a class="dropdown-item active" href="/docs/4.4/">Latest (4.4.x)</a>
-                      <a class="dropdown-item" href="https://getbootstrap.com/docs/4.3/">v4.3.1</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="https://v4-alpha.getbootstrap.com/">v4 Alpha 6</a>
-                      <a class="dropdown-item" href="https://getbootstrap.com/2.3.2/">v2.3.2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/docs/versions/">All versions</a>
-                    </div>
-                  </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark bg-dark text-light my-2 my-sm-0" type="submit"><b>Buscar</b></button>
-              </form>
+          <li class="nav-item dropdown ml-2">
+            <a class="nav-item nav-link active dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Language
+            </a>
+            <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+              <a class="dropdown-item active" href="/docs/4.4/">Latest (4.4.x)</a>
+              <a class="dropdown-item" href="https://getbootstrap.com/docs/4.3/">v4.3.1</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="https://v4-alpha.getbootstrap.com/">v4 Alpha 6</a>
+              <a class="dropdown-item" href="https://getbootstrap.com/2.3.2/">v2.3.2</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/docs/versions/">All versions</a>
             </div>
-        </nav>
-    </header>
+          </li>
+          <li class="nav-item mr-2">
+            <a class="nav-link active"><i id="theme-switcher-moon" class="feather-20" data-feather="moon"></i><i id="theme-switcher-sun" class="feather-20 not-display" data-feather="sun"></i></a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-dark bg-dark text-light my-2 my-sm-0" type="submit"><b>Buscar</b></button>
+        </form>
+      </div>
+    </nav>
+  </header>
 
-    {% block content %}
-    {% endblock %}
+  {% block content %}
+  {% endblock %}
 
-    <footer>
+  <footer>
 
-    </footer>
+  </footer>
 
-    <script>
-      $('.alert').alert()
-      feather.replace()
-    </script>
+  <script>
+    $('.alert').alert()
+    feather.replace()
+  </script>
 
 </body>
+
 </html>

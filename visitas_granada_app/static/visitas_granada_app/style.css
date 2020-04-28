@@ -1,5 +1,9 @@
 body {
-	background-color: #e2e2e2;
+	background-color: #d8d8d8;
+}
+
+.nav-link:hover{
+	transform: scale(1.05);
 }
 
 .feather-16{
@@ -15,6 +19,14 @@ body {
 .feather-20{
     width: 20px;
     height: 20px;
+}
+
+.scale-on-hover:hover{
+	transform: scale(1.15);
+}
+
+.not-display{
+	display: none;
 }
 
 /* Style listado.html */
