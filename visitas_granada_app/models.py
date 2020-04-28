@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Visita(models.Model):
 	nombre      = models.CharField(max_length=100)
@@ -12,4 +13,11 @@ class Comentario(models.Model):
 	texto       = models.CharField(max_length=500)
 	# Fecha
 	# Usuario
+
+
+# Este modelo permite añadir características al usuario por defecto de Django pero
+# sin tener que tocar nada sobre este.
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=512)
 	
