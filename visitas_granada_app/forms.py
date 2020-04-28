@@ -11,6 +11,7 @@ class UserLogInForm(forms.Form):
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(
         attrs={'placeholder': 'Contraseña'}))
     next = forms.CharField(initial='',  widget=forms.HiddenInput)
+# TODO Al añadir el Register y el crear usuario crear el perfil con cada usuario que se cree
 
 
 class VisitaForm(forms.Form):
@@ -49,7 +50,7 @@ class VisitaForm(forms.Form):
         visita.descripcion = self.cleaned_data['descripcion']
         new_img = self.cleaned_data['foto']
         if new_img is not None:
-            new_img.name = datetime.now().strftime("%m/%d/%Y-%H:%M:%S") + '.' + new_img.image.format.lower()
+            new_img.name = datetime.now().strftime("%m_%d_%Y-%H_%M_%S") + '.' + new_img.image.format.lower()
             if visita.foto.name != 'fotos/default.png':
                 print("valued in")
                 visita.foto.delete(save=False)
