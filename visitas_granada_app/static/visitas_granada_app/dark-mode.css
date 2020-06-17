@@ -23,6 +23,10 @@
     color: var(--font-light-color) !important;
 }
 
+[data-theme="dark"] .navbar-toggler{
+    background-color: var(--secondary-color) !important;
+}
+
 [data-theme="dark"] .card {
     background-color: var(--secondary-color) !important;
 }

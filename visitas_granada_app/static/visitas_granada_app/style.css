@@ -21,6 +21,11 @@ body {
     height: 20px;
 }
 
+.map {
+	min-height:300px;
+	width: 100%;
+  }
+
 .scale-on-hover:hover{
 	transform: scale(1.15);
 }
