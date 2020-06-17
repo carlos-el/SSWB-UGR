@@ -12,5 +12,7 @@ class VisitaSerializer(serializers.ModelSerializer):
             'likes',
             'fecha_pub',
             'foto',
+            'lat',
+            'lon'
         )
 
