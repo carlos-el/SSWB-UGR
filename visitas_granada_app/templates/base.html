@@ -11,20 +11,26 @@
   {% load static %}
 
   <link rel="shortcut icon" type="image/png" href="{% static 'visitas_granada_app/favicon.png' %}" />
+  <!-- Para OpenLayers -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+  <!-- Para Boostrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Custom -->
   <link rel="stylesheet" type="text/css" href="{% static 'visitas_granada_app/style.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'visitas_granada_app/dark-mode.css' %}">
 
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
+  <!-- Para Boostrap y jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+  <!-- Para OpenLayers -->
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
 
   <!-- Paquete de iconos Feather -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -65,7 +71,8 @@
           </li>
           {% if request.user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'nueva' %}"><i class="feather-16" data-feather="plus-square"></i> Nueva
+            <a class="nav-link active" href="{% url 'nueva' %}"><i class="feather-16" data-feather="plus-square"></i>
+              Nueva
               visita</a>
           </li>
           {% endif %}
@@ -73,7 +80,8 @@
         <ul class="navbar-nav ml-md-auto">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'logout' %}"><i class="feather-16" data-feather="log-out"></i> Logout</a>
+            <a class="nav-link active" href="{% url 'logout' %}"><i class="feather-16" data-feather="log-out"></i>
+              Logout</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="#"><i class="feather-16" data-feather="user-check"></i>
@@ -81,7 +89,8 @@
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'login' %}"><i class="feather-16" data-feather="log-in"></i> Login</a>
+            <a class="nav-link active" href="{% url 'login' %}"><i class="feather-16" data-feather="log-in"></i>
+              Login</a>
           </li>
           <!-- <li class="nav-item">
                     <a class="nav-link active" href="#"><i class="feather-16" data-feather="user-plus"></i> Register</a>
@@ -104,7 +113,8 @@
             </div>
           </li>
           <li class="nav-item mr-2">
-            <a class="nav-link active"><i id="theme-switcher-moon" class="feather-20" data-feather="moon"></i><i id="theme-switcher-sun" class="feather-20 not-display" data-feather="sun"></i></a>
+            <a class="nav-link active"><i id="theme-switcher-moon" class="feather-20" data-feather="moon"></i><i
+                id="theme-switcher-sun" class="feather-20 not-display" data-feather="sun"></i></a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
