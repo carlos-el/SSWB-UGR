@@ -58,7 +58,7 @@ class VisitaDetalle(View):
     # Controlador para mostrar una visita concreta desde la web
     def get(self, request, visita_id):
         visita = get_object_or_404(Visita, pk=visita_id)
-        editForm = VisitaForm(initial={'nombre': visita.nombre, 'descripcion': visita.descripcion})
+        editForm = VisitaForm(initial={'nombre': visita.nombre, 'descripcion': visita.descripcion, 'lat': visita.lat, 'lon':visita.lon})
         context = {'visita': visita, 'form': editForm, 'errors': []}
         return render(request, 'detalle.html', context)
 
@@ -271,7 +271,8 @@ class VisitaLikesAPI(View):
             return JsonResponse({'error': 'Visita no encontrada'}, status=404)
 
         likes = request.PUT.get('likes', None)
-
+        print(request.PUT)
+        
         if likes is None:
             return JsonResponse({'error': 'Valor de likes no provisto'}, status=400)
 
