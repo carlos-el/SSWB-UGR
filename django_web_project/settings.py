@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['SECRET_DJANGO_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,3 +128,53 @@ STATIC_URL = '/static/'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Allow CORS for request issued in our SPA
+CORS_ORIGIN_ALLOW_ALL = True
+
+# Logging setup
+# Descomentar para su funcionamiento.
+
+# LOG_FILE = 'django_custom_logs.log'
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+
+#     'formatters': {
+#         'verbose': {
+#             'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#             'datefmt': "%d/%b/%Y %H:%M:%S"
+#         },
+#         'simple': {
+#             'format': '%(levelname)s [%(name)s:%(lineno)s] %(message)s'
+#         },
+#     },
+
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, LOG_FILE),
+#             'formatter': 'verbose',
+#             'mode': 'w'
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple'
+#         }
+#     },
+
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'propagate': True,
+#             'level': 'ERROR',
+#         },
+#         'visitas_granada_app': {
+#             'handlers': ['file', 'console'],
+#             'level': 'DEBUG',
+#         },
+#     }
+# }
