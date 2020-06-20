@@ -107,12 +107,16 @@
 
     <div class="row p-4">
         <div class="col-12">
-            {% for comentario in visita.comentarios.all %}
-            <p>{{comentario.texto}}</p>
-            <div>
-                <hr>
-            </div>
-            {% endfor %}
+            {% if visita.comentarios.all %}
+                {% for comentario in visita.comentarios.all %}
+                <p>{{comentario.texto}}</p>
+                <div>
+                    <hr>
+                </div>
+                {% endfor %}
+            {% else %}
+                <b>No hay comentarios para esta visita.</b>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@
 
   {% load static %}
 
-  <link rel="shortcut icon" type="image/png" href="{% static 'visitas_granada_app/favicon.png' %}" />
+  <link rel="shortcut icon" type="image/png" href="{% static 'visitas_granada_app/favicon.ico' %}" />
   <!-- Para OpenLayers -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
   <!-- Para Boostrap -->
@@ -52,21 +52,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse ml-3 mr-3" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'listado' %}">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="{% url 'listado' %}">Inicio<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Dropdown
+              Desplegable
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Acción</a>
+              <a class="dropdown-item" href="#">Otra acción</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">Algo más aquí</a>
             </div>
           </li>
           {% if request.user.is_staff %}
@@ -97,19 +97,17 @@
                   </li> -->
           {% endif %}
 
-          <li class="nav-item dropdown ml-2">
+          <li class="nav-item dropdown">
             <a class="nav-item nav-link active dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Language
+              Idioma
             </a>
             <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-              <a class="dropdown-item active" href="/docs/4.4/">Latest (4.4.x)</a>
-              <a class="dropdown-item" href="https://getbootstrap.com/docs/4.3/">v4.3.1</a>
+              <a class="dropdown-item active" >Idioma 1</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="https://v4-alpha.getbootstrap.com/">v4 Alpha 6</a>
-              <a class="dropdown-item" href="https://getbootstrap.com/2.3.2/">v2.3.2</a>
+              <a class="dropdown-item active" >Idioma 2</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/docs/versions/">All versions</a>
+              <a class="dropdown-item active" >Idioma 3</a>
             </div>
           </li>
           <li class="nav-item mr-2">
@@ -118,7 +116,7 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" placeholder="Búsqueda" aria-label="Search">
           <button class="btn btn-outline-dark bg-dark text-light my-2 my-sm-0" type="submit"><b>Buscar</b></button>
         </form>
       </div>
