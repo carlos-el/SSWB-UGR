@@ -1,5 +1,5 @@
 
-from .models import Visita
+from .models import Visita, Comentario
 from rest_framework import serializers
 
 class VisitaSerializer(serializers.ModelSerializer):
@@ -14,5 +14,12 @@ class VisitaSerializer(serializers.ModelSerializer):
             'foto',
             'lat',
             'lon'
+        )
+
+class ComentarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = (
+            'texto',
         )
 

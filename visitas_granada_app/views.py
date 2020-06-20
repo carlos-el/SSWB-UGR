@@ -2,7 +2,7 @@ from django_web_project.settings import BASE_DIR, STATIC_URL
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from .models import Visita, Comentario, Perfil
-from .serializers import VisitaSerializer
+from .serializers import VisitaSerializer, ComentarioSerializer
 from django.views import View
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
@@ -22,6 +22,7 @@ import random
 
 # DECORATORS
 # TODO Mover decorators a otro fichero (junto con su import de wraps)
+# Decorador que comprueba que la petición contiene un token JWT y que es válido
 def check_request_jwt_decorator(fn):
     @wraps(fn)
     def wrapper(request, *args, **kwargs):
@@ -260,8 +261,7 @@ class VisitaLikesAPI(View):
             return JsonResponse({'error': 'Visita no encontrada'}, status=404)
 
         return JsonResponse({'likes': visita.likes})
-
-    # TODO Valorar si hay que estar autenticado para realizar esta accion 
+ 
     # TODO manejar la concurrencia 
     # TODO Permitir que solo se vote una vez a ser posible
     def put(self, request, visita_id):
@@ -271,7 +271,6 @@ class VisitaLikesAPI(View):
             return JsonResponse({'error': 'Visita no encontrada'}, status=404)
 
         likes = request.PUT.get('likes', None)
-        print(request.PUT)
         
         if likes is None:
             return JsonResponse({'error': 'Valor de likes no provisto'}, status=400)
@@ -287,6 +286,20 @@ class VisitaLikesAPI(View):
             return JsonResponse({'likes': visita.likes}, status=200)
         else:
             return JsonResponse({'error': 'Valor de likes no permitido'}, status=400)
+
+
+class VisitaComentariosAPI(View):
+    def get(self, request, visita_id):
+        try:
+            visita = Visita.objects.get(pk = visita_id)
+        except Visita.DoesNotExist:
+            return JsonResponse({'error': 'Visita no encontrada'}, status=404)
+
+        comentarios_json = ComentarioSerializer(instance=visita.comentarios, many=True).data
+        return JsonResponse({'comentarios': comentarios_json})
+
+    # def post(self, request, visita_id):
+    #     pass
 
 
 class GetJWT(View):
@@ -311,8 +324,3 @@ class GetJWT(View):
         
 
 # TODO hacer decorator para comprobar isStaff? tendria que llamarse despues de check_jwt  ya que es el q establece request.user
-# TODO Probar que todas las vistas funcionan
-
-# TODO Notas utiles
-## QueryDict to Dict
-# {k: v[0] if len(v) == 1 else v for k, v in request.PUT.lists()}
