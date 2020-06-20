@@ -11,7 +11,7 @@ class UserLogInForm(forms.Form):
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(
         attrs={'placeholder': 'Contraseña'}))
     next = forms.CharField(initial='',  widget=forms.HiddenInput)
-# TODO Al añadir el Register y el crear usuario crear el perfil con cada usuario que se cree
+# TODO Al añadir el Register y al crear usuario hay que crear el perfil extendido con cada usuario que se cree
 
 
 class VisitaForm(forms.Form):
