@@ -1,3 +1,5 @@
+# Fichero que al ser ejecutado poblará la base de datos de la app de Django con algunas visitas
+
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','django_web_project.settings')
 
