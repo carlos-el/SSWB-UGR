@@ -98,7 +98,7 @@ class Detalle extends Component {
 
     // Función para pedir la info de la visita a la API REST
     fetchVisita() {
-        fetch("http://localhost:8000/api/visitas/" + this.state.id, {
+        fetch("http://localhost:80/api/visitas/" + this.state.id, {
             method: "GET",
             headers: {
                 'Accept': 'application/json'
@@ -125,7 +125,7 @@ class Detalle extends Component {
 
     // Función para pedir la info de los comentarios a la API REST
     fetchComentarios() {
-        fetch("http://localhost:8000/api/visitas/comentarios/" + this.state.id, {
+        fetch("http://localhost:80/api/visitas/comentarios/" + this.state.id, {
             method: "GET",
             headers: {
                 'Accept': 'application/json'
@@ -149,7 +149,7 @@ class Detalle extends Component {
         var urlencoded = new URLSearchParams();
         urlencoded.append("likes", (this.state.likes + 1).toString());
 
-        fetch("http://localhost:8000/api/visitas/likes/" + this.state.id + "/", {
+        fetch("http://localhost:80/api/visitas/likes/" + this.state.id + "/", {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -175,7 +175,7 @@ class Detalle extends Component {
         var urlencoded = new URLSearchParams();
         urlencoded.append("likes", (this.state.likes - 1).toString());
 
-        fetch("http://localhost:8000/api/visitas/likes/" + this.state.id + "/", {
+        fetch("http://localhost:80/api/visitas/likes/" + this.state.id + "/", {
             method: "PUT",
             headers: {
                 'Accept': 'application/json',
@@ -202,7 +202,7 @@ class Detalle extends Component {
                 <div className="container-fluid mt-2 mt-sm-5">
                     <div className="row px-4">
                         <div className="col-xs-6 col-sm-5 col-md-4 col-lg-3">
-                            <img src={"http://localhost:8000" + this.state.visita.foto} className="w-100" alt="..."></img>
+                            <img src={"http://localhost:80" + this.state.visita.foto} className="w-100" alt="..."></img>
                             <p className="h5 text-center mt-3"><b id="likes-value-holder">{this.state.likes}</b> Me gusta <i className="feather-24"
                                 data-feather="heart"></i></p>
                             <p className="text-center"><span id="like-btn" onClick={this.giveLike}><i className="feather-24 scale-on-hover" data-feather="thumbs-up"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="dislike-btn" onClick={this.giveDislike}><i className="feather-24 scale-on-hover" data-feather="thumbs-down"></i></span></p>

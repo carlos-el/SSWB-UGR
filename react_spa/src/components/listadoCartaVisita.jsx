@@ -14,7 +14,7 @@ class CartaVisita extends Component{
                 <div className="card p-3 mt-3 border-0 shadow" style={{maxWidth: "760px"}}>
                     <div className="row no-gutters">
                         <div className="col-md-4 align-self-center">
-                            <img src={"http://localhost:8000" + visita.foto} className="card-img"
+                            <img src={"http://localhost:80" + visita.foto} className="card-img"
                                 style={{maxWidth: "180px", maxHeight: "180px", height: "auto"}} alt="..."></img>
                         </div>
                         <div className="col-md-8">

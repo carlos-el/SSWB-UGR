@@ -18,7 +18,7 @@ class Listado extends Component{
 
     // Función para pedir las visitas a la API REST
     fetchVisitas(){
-        fetch("http://localhost:8000/api/visitas/", {
+        fetch("http://localhost:80/api/visitas/", {
             method: "GET",
             headers: {
                 'Accept': 'application/json'
@@ -43,10 +43,10 @@ class Listado extends Component{
                             <div id="carouselListaVisitas" className="carousel slide position-relative" data-ride="carousel">
                                 <div className="carousel-inner">
                                     <div className="carousel-item active" data-interval="5000">
-                                        <img src="http://localhost:8000/media/fotos/granada.jpg" className="d-block w-100" alt="..."></img>
+                                        <img src="http://localhost:80/media/fotos/granada.jpg" className="d-block w-100" alt="..."></img>
                                     </div>
                                     <div className="carousel-item" data-interval="5000">
-                                        <img src="http://localhost:8000/media/fotos/granada2.jpg" className="d-block w-100" alt="..."></img>
+                                        <img src="http://localhost:80/media/fotos/granada2.jpg" className="d-block w-100" alt="..."></img>
                                     </div>
                                 </div>
                             </div>

@@ -53,7 +53,7 @@ class Base extends Component {
                         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
                             <Link to="/">
                                 <span className="navbar-brand">
-                                    <img src="http://localhost:8000/media/fotos/default.png" width="30" height="30" alt="" />
+                                    <img src="http://localhost:80/media/fotos/default.png" width="30" height="30" alt="" />
                                 </span>
                             </Link>
                             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
