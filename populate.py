@@ -6,10 +6,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','django_web_project.settings')
 import django
 django.setup()
 
-from visitas_granada_app.models import Visita, Comentario
+from django.contrib.auth.models import User
+from visitas_granada_app.models import Visita, Comentario, Perfil
 	
 if __name__ == "__main__":
-		
+	# Poblamos la base de datos
 	v = Visita.objects.create(nombre="Alhambra", descripcion="Texto Alhambra", likes=2)
 	Comentario.objects.create(visita=v, texto="Buenas impresiones.")
 	Comentario.objects.create(visita=v, texto="Me ha gustado.")
@@ -23,4 +24,11 @@ if __name__ == "__main__":
 	Comentario.objects.create(visita=v, texto="Un sitio agradable.")
 	Comentario.objects.create(visita=v, texto="Bonitas vistas.")
 
-	print(Visita.objects.all())
+	print("Base de datos poblada con éxito.")
+
+	# Asignamos un perfil a cada usuario que no lo tenga
+	users = User.objects.all()
+
+	for user in users:
+		if not hasattr(user, 'perfil'):
+			Perfil.objects.create(user = user)
