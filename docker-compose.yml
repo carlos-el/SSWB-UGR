@@ -1,14 +1,36 @@
 version: "3"
 
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 80:80 # Puerto para la app de Django
+      - 81:81 # Puerto para la app de React
+    volumes:
+      - ./conf/default.conf:/etc/nginx/conf.d/default.conf  # Proveemos la conf de nginx
+      - ./web/static:/var/www/static                        # Proveemos los archivos staticos de la app de Django (despues de hacer collectstatic)
+      - ./media:/var/www/media                              # Proveemos los archivos media de la app de Django
+      - ./react_spa/build:/var/www/react_spa                # Proveemos los archivos de la build final de la SPA de React
+    depends_on:
+      - web
+    networks:
+      - my_net
+
   web:
     build: .
     image: sswb-project:latest
-    command: python manage.py runserver 0.0.0.0:8000 
+    # Comando para el entrono de desarrollo
+    #command: python manage.py runserver 0.0.0.0:8000 
+    # Comando para el entorno final
+    command: gunicorn -b 0.0.0.0:8000 django_web_project.wsgi
     environment:
-    - SECRET_DJANGO_KEY='one_secret_django_key'
+      # Establecemos como variable de entorno una clave secreta para Django (lo correcto sería hacerlo con una env file que realmente oculte la clave)
+      # Lo haremos así para que sea facilmente reproducible.
+    - SECRET_DJANGO_KEY='one_secret_django_key'   
     volumes:
       - .:/code
+    # Indicamos el mapeo de puertos (solo es necesario mapear puertos para desarrollo)
+    # (Estos servidores no necesitan ni deben ser accedidos en producción)
     ports:
       - "8000:8000"
       - "3000:3000"
@@ -17,3 +39,4 @@ services:
 
 networks:
   my_net:
+

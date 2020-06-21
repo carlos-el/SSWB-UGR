@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_DJANGO_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,6 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'web/static/')
 
 # Media files
 MEDIA_URL = '/media/'
@@ -133,48 +134,49 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Logging setup
-# Descomentar para su funcionamiento.
+# Descomentar para su funcionamiento en producción
+# y comentar para facilidad de desarrollo.
 
-# LOG_FILE = 'django_custom_logs.log'
+LOG_FILE = 'django_custom_logs.log'
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
 
-#     'formatters': {
-#         'verbose': {
-#             'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-#             'datefmt': "%d/%b/%Y %H:%M:%S"
-#         },
-#         'simple': {
-#             'format': '%(levelname)s [%(name)s:%(lineno)s] %(message)s'
-#         },
-#     },
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s [%(name)s:%(lineno)s] %(message)s'
+        },
+    },
 
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(BASE_DIR, LOG_FILE),
-#             'formatter': 'verbose',
-#             'mode': 'w'
-#         },
-#         'console': {
-#             'level': 'INFO',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'simple'
-#         }
-#     },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, LOG_FILE),
+            'formatter': 'verbose',
+            'mode': 'w'
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        }
+    },
 
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'propagate': True,
-#             'level': 'ERROR',
-#         },
-#         'visitas_granada_app': {
-#             'handlers': ['file', 'console'],
-#             'level': 'DEBUG',
-#         },
-#     }
-# }
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'propagate': True,
+            'level': 'ERROR',
+        },
+        'visitas_granada_app': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+        },
+    }
+}
