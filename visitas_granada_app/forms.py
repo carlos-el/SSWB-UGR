@@ -72,10 +72,11 @@ class VisitaForm(forms.Form):
         if lon is not None:
             visita.lon = lon
         if new_img is not None:
-            new_img.name = datetime.now().strftime("%m_%d_%Y-%H_%M_%S") + \
+            # Damos el nombre adecuado a la foto
+            new_img.name = datetime.now().strftime("%m_%d_%Y-%H_%M_%S_%f") + \
                 '.' + new_img.image.format.lower()
+            # Si la foto anterior no era la default la borramos 
             if visita.foto.name != 'fotos/default.png':
-                print("valued in")
                 visita.foto.delete(save=False)
             visita.foto = new_img
 
@@ -89,6 +90,9 @@ class VisitaForm(forms.Form):
         img = self.cleaned_data['foto']
 
         if img is not None:
+            # Damos el nombre adecuado a la imagen
+            img.name = datetime.now().strftime("%m_%d_%Y-%H_%M_%S_%f") + \
+                '.' + img.image.format.lower()
             visita = Visita.objects.create(
                 nombre=nombre, descripcion=descripcion, foto=img)
         else:

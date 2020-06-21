@@ -127,7 +127,12 @@ class VisitaBorrar(View):
 
         visita = get_object_or_404(Visita, pk=visita_id)
 
+        # Si la foto de la visita no es la default la borramos 
+        if visita.foto.name != 'fotos/default.png':
+            visita.foto.delete(save=False)
+
         visita.delete()
+        
         messages.success(request, "Visita eliminada con éxito")
 
         return redirect('/')
