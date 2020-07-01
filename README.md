@@ -8,7 +8,7 @@ Se ha realizado un proyecto web que consta principalmente de 2 aplicaciones.
 
 - Una app de frontend con React que funciona como SPA y consume la API REST de Django. Esta app se ubica en el directorio `react_spa` dentro del directorio raíz del repositorio. No cuenta con la posibilidad de loguear crear o editar visitas.
 
-Ambas aplicaciones se han deplegado sobre un servidor Nginx. este sirve tanto la app de Django (puerto 80) como la SPA de React (puerto 81)
+Ambas aplicaciones se han deplegado sobre un servidor Nginx. Este sirve tanto la app de Django (puerto 80) como la SPA de React (puerto 81)
 
 Todas las tareas del curso (de la 0 a la 11) se han completado junto con algunos de los ejercicios opcionales especificados para cada tarea.
 
@@ -47,26 +47,24 @@ A continuación se ofrecen algunos ejemplos de peticiones para probar la API RES
 - Obtener los likes de la visita 1:
     - `http --follow --timeout 3600 GET localhost/api/visitas/likes/1`
 - Dar like a la visita 1 (Dar like o dislike depende del valor que se pase. Si se quiere dar like hay que pasar un valor una unidad mayor que el número de likes de la visita):
-    - `http --ignore-stdin --form --follow --timeout 3600 PUT localhost/api/visitas/likes/1/ \
- 'likes'='3'`
+    - `http --ignore-stdin --form --follow --timeout 3600 PUT localhost/api/visitas/likes/1/ 'likes'='3'`
 - Pedir token JWT para peticiones que lo requieran (guardar el token devuelto para próximos ejemplos):
-    - `http --ignore-stdin --form --follow --timeout 3600 POST localhost/api/token/ \
- 'username'='admin' \
+    - `http --ignore-stdin --form --follow --timeout 3600 POST localhost/api/token/
+ 'username'='admin'
  'password'='admin'`
 - Crear una nueva visita (usar token de la petición anterior):
-    - `http --ignore-stdin --form --follow --timeout 3600 POST localhost/api/visitas/ \
- 'nombre'='Un test de POST para la visita.' \
- 'descripcion'='Test de POST para la visita.' \
+    - `http --ignore-stdin --form --follow --timeout 3600 POST localhost/api/visitas/ 
+ 'nombre'='Un test de POST para la visita.' 
+ 'descripcion'='Test de POST para la visita.' 
  Authorization:'Bearer <token>'`
 - Editar una visita (usar token de la petición anterior):
-    - `http --ignore-stdin --form --follow --timeout 3600 PUT localhost/api/visitas/4/ \
- 'nombre'='Un test de PUT para la visita' \
- 'descripcion'='Test de PUT request para la visita' \
- 'Content-Type'='application/json' \
+    - `http --ignore-stdin --form --follow --timeout 3600 PUT localhost/api/visitas/4/ 
+ 'nombre'='Un test de PUT para la visita' 
+ 'descripcion'='Test de PUT request para la visita' 
+ 'Content-Type'='application/json' 
  Authorization:'Bearer <token>'`
  - Eliminar una visita (usar token de la petición anterior):
-    - `http --ignore-stdin --form --follow --timeout 3600 DELETE localhost/api/visitas/4/ \
- \
+    - `http --ignore-stdin --form --follow --timeout 3600 DELETE localhost/api/visitas/4/
  Authorization:'Bearer <token>'`
 
  ---
