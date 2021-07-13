@@ -1,5 +1,5 @@
 Django==3.1.12
-Pillow==8.1.1
+Pillow==8.2.0
 djangorestframework==3.11.2
 PyJWT==1.7.1
 django-cors-headers==3.4.0
